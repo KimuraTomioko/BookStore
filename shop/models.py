@@ -17,16 +17,20 @@ class Supplier(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Поставщик'
+        verbose_name = 'Поставщика'
         verbose_name_plural = 'Поставщики'
 
 class Supply(models.Model):
     data_supply = models.DateTimeField(verbose_name="Дата поставки товара")
     supplier = models.ForeignKey("Supplier", on_delete=models.PROTECT, verbose_name='Поставщик')
-    
+    product = models.ManyToManyField('Product', through='Pos_supply', verbose_name='Товар')
 
     def __str__(self):
         return f"Номер №{self.pk} - {self.data_supply}"
+    
+    class Meta:
+        verbose_name = 'Поставка'
+        verbose_name_plural = 'Поставки'
 
 
 class Parametr(models.Model):
@@ -141,13 +145,13 @@ class Pos_order(models.Model):
 
 
 class Pos_supply(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.PROTECT, verbose_name='Товар')
-    supply = models.ForeignKey(Supply, on_delete=models.PROTECT, verbose_name='Поставка')
+    product = models.ForeignKey('Product', on_delete=models.PROTECT, verbose_name='Продукт')
+    supply = models.ForeignKey('Supply', on_delete = models.PROTECT, verbose_name='Поставка')
     count = models.PositiveIntegerField(verbose_name='Количество товара')
-
+    
     def __str__(self):
-        return f'{self.product.name} - #{self.supply.pk}'
-
+        return f"Товар: {self.product}, Номер поствки: {self.supply}, Количество товара: {self.count}"
+    
     class Meta:
         verbose_name = 'Позиция поставки'
         verbose_name_plural = 'Позиции поставок'
