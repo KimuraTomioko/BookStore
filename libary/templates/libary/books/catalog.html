@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+</head>
+<body>
+    <h1>Книги</h1>
+    <div>
+        {% for book in list_books %}
+        <h1>{{ book.name }}</h1>
+        <div>
+            <p>
+                Количество страниц: {{ book.count_pages }}
+            </p>
+            <p>
+                Категории: {% for category in book.category_set.all %}
+                {{ category.title }}.
+                {% endfor %}
+            </p>
+            <p>
+                Цена: {{ book.price }} рублей
+            </p>
+            {% if book.photo %}
+                <img src="{{ book.photo.url }}" style="max-width: 100px; max-height: 100px;" alt="...">
+            {% else %}
+                <img src="{% static 'static/libary/image/photo1.jpg' %}" style="max-width: 100px; max-height: 100px;" alt="...">
+            {% endif %}
+            <p>
+                <a href="{% url 'book_details' book.pk %}">Подробнее</a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+

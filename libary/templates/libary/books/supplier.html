@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поставщики</title>
+</head>
+<body>
+    <h1>Поставщики</h1>
+    <div>
+        {% for supplier in suppliers %}
+        <h2>{{ supplier.title }}</h2>
+        <p>
+            <strong>Фамилия представителя:</strong> {{ supplier.agent_name }}
+        </p>
+        <p>
+            <strong>Имя представителя:</strong> {{ supplier.agent_secondname }}
+        </p>
+        <p>
+            <strong>Отчество представителя:</strong> {{ supplier.agent_surname }}
+        </p>
+        <p>
+            <strong>Телефон представителя:</strong> {{ supplier.telephone }}
+        </p>
+        <p>
+        </p>
+        {% endfor %}
+    </div>
+</body>
+</html>
