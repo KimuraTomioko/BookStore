@@ -17,27 +17,27 @@ class AdminParametr(admin.ModelAdmin):
 
 @admin.register(Tag)
 class AdminTab(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'description')
 
 @admin.register(Category)
 class AdminCategory(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'description')
 
 @admin.register(Order)
 class AdminOrder(admin.ModelAdmin):
-    pass
+    list_display = ('buyer_lastname', 'buyer_name', 'buyer_surname', 'delivery_address', 'date_create')
 
 @admin.register(Product)
 class AdminProduct(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'price', 'create_date')
 
 @admin.register(Pos_parametr)
 class AdminPos_parametr(admin.ModelAdmin):
-    pass
+    list_display = ('product', 'parametr', 'value')
 
 @admin.register(Pos_order)
 class AdminPos_order(admin.ModelAdmin):
-    pass
+    list_display = ('product', 'order', 'count')
 
 @admin.register(Manufacturer)
 class AdminManufacturer(admin.ModelAdmin):
@@ -45,7 +45,7 @@ class AdminManufacturer(admin.ModelAdmin):
 
 @admin.register(Pos_supply)
 class AdminPos_supply(admin.ModelAdmin):
-    pass
+    list_display = ('product', 'supply', 'count')
 
 @admin.register(Warehouse)
 class AdminWarehouse(admin.ModelAdmin):

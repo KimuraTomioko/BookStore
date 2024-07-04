@@ -96,6 +96,7 @@ class Order(models.Model):
         verbose_name_plural = 'Заказы'
 
 
+
 class Product(models.Model):
     name = models.CharField(max_length=MAX_LENGTH_CHAR, unique=True, verbose_name='Название')
     description = models.CharField(max_length=MAX_LENGTH_CHAR, blank=True, null=True, verbose_name='Описание')
