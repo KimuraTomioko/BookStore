@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог с фильтрами</title>
+</head>
+<body>
+    <form>
+        {{ form.as_p }}
+        <button type="submit" class = 'btn btn-info'>Применить фильтр</button>
+    </form>
+    {% for product in product_list %}
+        <h1>Название продукта: {{ product.name }}</h1>
+        <p>Price: {{ product.price }}</p>
+    {% endfor %}
+</body>
+</html>

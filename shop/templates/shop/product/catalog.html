@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товров</title>
+</head>
+<body>
+    {% for product in product_list %}
+        <h1>Название продукта: {{ product.name }}</h1>
+        <p>Описание продукта: {{ product.description }}</p>
+        <p>Цена: {{ product.price }}</p>
+        <p>Дата создания: {{ product.create_date }}</p>
+    {% endfor %}
+</body>
+</html>
