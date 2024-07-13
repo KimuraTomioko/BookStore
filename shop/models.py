@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 MAX_LENGTH_CHAR = 255
@@ -99,16 +99,16 @@ class Order(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=MAX_LENGTH_CHAR, unique=True, verbose_name='Название')
-    description = models.CharField(max_length=MAX_LENGTH_CHAR, blank=True, null=True, verbose_name='Описание')
+    description = models.TextField(blank=True, null=True, verbose_name='Описание')
     price = models.FloatField(verbose_name='Цена')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     update_date = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
     photo = models.ImageField(upload_to='image/%Y/%m/%d', null=True, blank=True, verbose_name='Фотография товара')
     is_exists = models.BooleanField(default=True, verbose_name='Логическое удаление')
 
-    parametr = models.ManyToManyField(Parametr, through='Pos_parametr', verbose_name='Характеристики товара')
+    parametr = models.ManyToManyField(Parametr, through='Pos_parametr', verbose_name='Характеристики товара', default='Без параметра')
     category = models.ForeignKey(Category,on_delete=models.PROTECT, verbose_name='Категория')
-    tag = models.ManyToManyField(Tag, blank=True, verbose_name='Тег')
+    tag = models.ManyToManyField(Tag, blank=True, verbose_name='Тег', default='Без тега')
 
     def __str__(self):
         return self.name
@@ -199,7 +199,7 @@ class Inventory(models.Model):
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')
     user_name = models.CharField(max_length=MAX_LENGTH_CHAR, verbose_name='Имя пользователя')
-    rating = models.PositiveIntegerField(verbose_name='Рейтинг')
+    rating = models.PositiveIntegerField(verbose_name='Рейтинг', validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField(verbose_name='Комментарий')
 
     def __str__(self):

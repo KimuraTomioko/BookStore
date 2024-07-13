@@ -3,25 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'shop/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            padding: 20px;
+        }
+        .messages {
+            list-style-type: none;
+            padding: 0;
+        }
+        .messages li {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .messages .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .messages .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .messages .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
 </head>
 <body>
-    <h1>Регистрация</h1>
+    <div class="container">
+        <h1 class="text-center">Регистрация</h1>
 
-    {% if messages %}
-        <h1>Оповещение</h1>
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    <div>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Зарегистрироваться">
-        </form>
+        {% if messages %}
+            <h2>Оповещение</h2>
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center">
+                    <input type="submit" value="Зарегистрироваться" class="btn btn-primary">
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a href="{% url 'log in' %}" class="btn btn-link">Уже есть аккаунт?  Войти</a>
+                <a href="{% url 'home_page' %}" class="btn btn-link">Назад</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -29,7 +29,10 @@ class AdminOrder(admin.ModelAdmin):
 
 @admin.register(Product)
 class AdminProduct(admin.ModelAdmin):
-    list_display = ('name', 'price', 'create_date')
+    list_display = ('name', 'price', 'create_date', 'is_exists')
+    list_display_links = ('name',)
+    list_filter = ('is_exists',)
+    list_editable = ('price', 'is_exists')
 
 @admin.register(Pos_parametr)
 class AdminPos_parametr(admin.ModelAdmin):
@@ -57,7 +60,8 @@ class AdminInventory(admin.ModelAdmin):
 
 @admin.register(Review)
 class AdminReview(admin.ModelAdmin):
-    pass
+    list_display = ('product', 'user_name', 'rating')
+    list_display_links = ('user_name',)
 
 @admin.register(Discount)
 class AdminDiscount(admin.ModelAdmin):

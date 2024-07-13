@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма добавления поставщика/Редактирования поставщика</title>
+    <link rel="stylesheet" href="{% static 'shop/css/boostrap.css' %}">
+</head>
+<body>
+<div class = 'container'>
+    <h1>Создать/Редактировать поставщика</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button type="submit" class="btn btn-primary">Создать/Редактировать</button>
+</div>
+<a href="{% url 'supplier_list' %}" class="btn btn-outline-info">Обратно к списку поставщиков</a>
+</body>
+</html>
+
+
+

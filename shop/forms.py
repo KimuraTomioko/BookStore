@@ -11,7 +11,6 @@ class ProductCreationForm(forms.ModelForm):
             'description',
             'price',
             'photo',
-            'is_exists',
             'parametr',
             'category',
             'tag'
@@ -22,7 +21,6 @@ class ProductCreationForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
             'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'is_exists': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'parametr': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'tag': forms.SelectMultiple(attrs={'class': 'form-control'}),
@@ -76,3 +74,29 @@ class ProductFilterForm(forms.Form):
         )
 
    )
+
+class FeebBack(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('rating', 'comment')
+
+        widgets = {
+            'rating': forms.NumberInput(attrs={'class':'form-control'}),
+            'comment': forms.Textarea(attrs={'class':'form-control'})
+        }
+
+
+class SupplierForm(forms.ModelForm):
+    class Meta:
+        model = Supplier
+        fields = ('name', 'agent_lastname', 'agent_name', 'agent_surname', 'agent_telephone', 'address', 'is_exists')
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'agent_lastname': forms.TextInput(attrs={'class': 'form-control'}),
+            'agent_name': forms.TextInput(attrs={'class':'form-control'}),
+            'agent_surname': forms.TextInput(attrs={'class':'form-control'}),
+            'agent_telephone': forms.TextInput(attrs={'class':'form-control'}),
+            'address': forms.TextInput(attrs={'class':'form-control'}),
+            'is_exists':forms.CheckboxInput(attrs={'class':'form-control'})
+        }
