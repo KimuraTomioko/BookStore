@@ -4,6 +4,8 @@ from .forms import *
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib import messages
+from .utils import CalculateMoney
 
 def product_list(request):
     list_product = Product.objects.all()
@@ -121,15 +123,21 @@ class ListSupplier(ListView):
     model = Supplier
     template_name = 'shop/supplier/supplier_list.html'
     allow_empty = True
-
+    paginate_by = 3
 
 class CreateSupplier(CreateView):
     model = Supplier
+    extra_context = {
+        'action':'Создать'
+    }
     template_name = 'shop/supplier/supplier_form.html'
     form_class = SupplierForm
 
-class UpdateView(UpdateView):
+class UpdateSupplier(UpdateView):
     model = Supplier
+    extra_context = {
+        'action':'Изменить'
+    }
     template_name = 'shop/supplier/supplier_form.html'
     form_class = SupplierForm
 
@@ -141,3 +149,24 @@ class DeleteSupplier(DeleteView):
     model = Supplier
     template_name = 'shop/supplier/supplier_confirm_delete.html'
     success_url = reverse_lazy('product_filter_page')
+
+class AddWarehouse(CreateView):
+    model = Warehouse
+    form_class = AddWarehouseForm
+    template_name = 'shop/warehouse/add_warehouse.html'
+
+class UpdateReview(UpdateView):
+    model = Review
+    form_class = FeebBack
+    template_name = 'catalog_with_filter.html'
+
+class OrderDetail(DetailView, CalculateMoney):
+    model = Order
+    template_name = 'shop/order.html'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order = context.get('object')
+        list_price = [Pos_order.sum_price_count() for pos_order in order.pos_order_set_all()] 
+        context['sum_price'] = self.sum_price(prices=list_price)
+        return context
+

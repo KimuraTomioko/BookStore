@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse_lazy
+from .utils import sum_price_count
 
 # Create your models here.
 MAX_LENGTH_CHAR = 255
@@ -15,6 +17,9 @@ class Supplier(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse_lazy('supplier_detail', kwargs={'pk':self.pk})
 
     class Meta:
         verbose_name = 'Поставщика'
@@ -139,6 +144,9 @@ class Pos_order(models.Model):
 
     def __str__(self):
         return f'{self.order.pk} {self.product.name} - {self.order.buyer_lastname}'
+    
+    def sum_price_count(self):
+        return sum_price_count(price=self.product.price, count = self.count, discount=self.discount)
 
     class Meta:
         verbose_name = 'Позиция заказа'

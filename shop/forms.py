@@ -100,3 +100,13 @@ class SupplierForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class':'form-control'}),
             'is_exists':forms.CheckboxInput(attrs={'class':'form-control'})
         }
+
+class AddWarehouseForm(forms.ModelForm):
+    class Meta:
+        model = Warehouse
+        fields = ('location','capacity')
+
+        widgets = {
+            'location': forms.TextInput(attrs={'class':'form-contol'}),
+            'capacity': forms.NumberInput(attrs={'class':'form-control'})
+        }
