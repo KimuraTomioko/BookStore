@@ -1,0 +1,25 @@
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="{% url 'product_list_filter' %}"
+       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <span class="fs-4">Лучший магазин</span>
+    </a>
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{% url 'product_list_filter' %}"
+                                class="nav-link px-2 text-body-secondary">Каталог</a></li>
+        <li class="nav-item"><a href="{% url 'product_list' %}"
+                                class="nav-link px-2 text-body-secondary">Продукты с заказами</a></li>
+        <li class="nav-item"><a href="{% url 'supplier_list' %}"
+                                class="nav-link px-2 text-body-secondary">Поставщики</a></li>
+
+        {% if request.user.is_anonymous %}
+            <li><a href="{% url 'log in' %}"
+                   class="btn btn-outline-success me-2">Авторизация</a></li>
+            <li><a href="{% url 'regis' %}"
+                   class="btn btn-outline-warning me-2">Регистрация</a></li>
+        {% else %}
+            <li><a href="{% url 'log out' %}"
+                   class="btn btn-outline-danger me-2">Выйти</a></li>
+        {% endif %}
+    </ul>
+
+</header>

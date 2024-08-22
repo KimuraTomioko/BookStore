@@ -16,3 +16,4 @@ class CalculateMoney:
 def sum_price_count(price: Union[float, int], count: Union[float, int], discount: int = None) -> float:
     return CalculateMoney().sum_price_count(price, count, discount)
 
+ 

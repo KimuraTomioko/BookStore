@@ -76,6 +76,7 @@ def user_login(request):
         form_login = LoginForm()
     return render(request, 'libary/auth/login.html', {'form': form_login})
 
+
 def user_logout(request):
     logout(request)
     messages.warning(request, 'Вы вышли из аккаунта')

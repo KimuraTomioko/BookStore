@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title_name %} 
+    {% endblock %}</title>
+    {% block link_bootstrap %}
+        <link rel="stylesheet" href="{% static 'shop/css/bootstrap.css' %}">
+    {% endblock %}
+    {% block link_additional %}
+    {% endblock %}
+</head>
+<body class="container">
+{% block body %}
+    {% block header %}
+        {% include '_inc/_header.html' %}
+    {% endblock %}
+    <main>
+        {% block content %}
+
+        {% endblock %}
+        {% block content_additional %}
+
+        {% endblock %}
+    </main>
+    {% block footer %}
+        {% include '_inc/_footer.html' %}
+    {% endblock %}
+{% endblock %}
+</body>
+</html>

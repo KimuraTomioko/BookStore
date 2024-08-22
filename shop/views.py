@@ -23,6 +23,12 @@ def get_product_by_id(request, id):
             review.user_name = request.user.username
             review.product = product_by_id
             review.save()
+            context = {
+                'form': comment_form,
+                'product': product_by_id 
+            }
+            return render(request, 'shop/product/product_by_id.html', context)
+
         else:
             context = {
                 'form': comment_form,
@@ -169,4 +175,29 @@ class OrderDetail(DetailView, CalculateMoney):
         list_price = [Pos_order.sum_price_count() for pos_order in order.pos_order_set_all()] 
         context['sum_price'] = self.sum_price(prices=list_price)
         return context
+    
+
+@login_required
+class CreateOrder(CreateView):
+    model = Order
+    extra_context = {
+        'action':'Создать'
+    }
+    template_name = 'shop/order/create.html'
+    form_class = AddOrder
+
+@login_required
+class UpdateOrder(UpdateView):
+    model = Order
+    extra_context = {
+        'action': 'Обновить'
+    }
+    template_name = 'shop/order/update.html'
+
+@login_required
+class DeleteOrder(DeleteView):
+    model = Order
+    template_name = 'shop/order/confirm_delete.html'
+    reverse_lazy = reverse_lazy('order_page')
+
 

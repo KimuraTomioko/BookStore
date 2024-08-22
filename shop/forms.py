@@ -110,3 +110,26 @@ class AddWarehouseForm(forms.ModelForm):
             'location': forms.TextInput(attrs={'class':'form-contol'}),
             'capacity': forms.NumberInput(attrs={'class':'form-control'})
         }
+
+class AddOrder(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('buyer_lastname', 'buyer_name', 'buyer_surname', 'comment', 'delivery_address', 'delivery_type', 'date_finish', 'product')
+
+        widgets = {
+            'buyer_lastname': forms.TextInput(attrs={'class': 'form-control'}),
+            'buyer_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'buyer_surname': forms.TextInput(attrs={'class':'form-control'}),
+            'comment': forms.Textarea(attrs={'class': 'form-contorl'}),
+            'delivery_address': forms.TextInput(attrs={'class': 'form-contorl'}),
+            'delivery_type': forms.Select(attrs={'class': 'form-contorl'}),
+            'date_finish': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'product': forms.SelectMultiple(attrs={'class': 'form-control'})
+        }
+    
+    product = forms.ModelMultipleChoiceField(
+        queryset=Product.objects.all(),
+        widget=forms.SelectMultiple(attrs={'class':'form-control'}),
+        required = False
+    )
+
