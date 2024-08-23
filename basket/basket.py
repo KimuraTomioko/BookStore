@@ -35,4 +35,17 @@ class Basket:
                 'count': 0,
                 'price': product.price
             }
+
+        if update_count:
+            self.basket[product_id]['count'] = count
+
+        else:
+            self.basket[product_id]['count'] += count
         
+        self.save()
+    
+    def remove(self, product: Product):
+        product_id = str(product_id)
+        if product_id in self.basket:
+            del self.basket[product_id]
+            self.save
