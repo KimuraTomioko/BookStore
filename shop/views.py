@@ -125,6 +125,7 @@ def get_more_filter_product(request):
 
 
 
+#suppliers
 class ListSupplier(ListView):
     model = Supplier
     template_name = 'shop/supplier/supplier_list.html'
@@ -161,20 +162,22 @@ class AddWarehouse(CreateView):
     form_class = AddWarehouseForm
     template_name = 'shop/warehouse/add_warehouse.html'
 
-class UpdateReview(UpdateView):
-    model = Review
-    form_class = FeebBack
-    template_name = 'catalog_with_filter.html'
 
+#orders
 class OrderDetail(DetailView, CalculateMoney):
     model = Order
     template_name = 'shop/order.html'
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+
         order = context.get('object')
-        list_price = [Pos_order.sum_price_count() for pos_order in order.pos_order_set_all()] 
+
+        list_price = [pos_order.sum_price_count() for pos_order in order.pos_order_set.all()]
+
         context['sum_price'] = self.sum_price(prices=list_price)
         return context
+
     
 
 @login_required
@@ -201,3 +204,8 @@ class DeleteOrder(DeleteView):
     reverse_lazy = reverse_lazy('order_page')
 
 
+#review
+class UpdateRating(UpdateView):
+    model = Review
+    form_class = FeebBack
+    template_name = 'product_by_id.html'
