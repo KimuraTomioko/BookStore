@@ -49,3 +49,11 @@ class Basket:
         if product_id in self.basket:
             del self.basket[product_id]
             self.save
+    
+    def get_total_price_position(self):
+        return sum(item['count'] * item['price'] for item in self.basket.values())
+
+    def clear(self):
+        del self.session[settings.BASKET_SESSION_ID]
+        self.session.modified = True
+        self.save()
