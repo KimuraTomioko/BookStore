@@ -59,3 +59,9 @@ def basket_buy(request):
             )
         basket.clear()
     return redirect('basket_detail')
+
+def open_order(request):
+    context = {
+        'form_order': OrderForm
+    }
+    return render(request, 'order/order_form.hmtl', context=context)
