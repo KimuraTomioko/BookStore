@@ -8,7 +8,7 @@ class Basket:
         if not basket:
             basket = self.session[settings.BASKET_SESSION_ID] = {}
         self.basket = basket
-    
+
     def __iter__(self):
         product_ids = self.basket.keys()
         product_list = Product.objects.filter(pk__in=product_ids)
@@ -16,14 +16,14 @@ class Basket:
 
         for product in product_list:
             basket[str(product.id)]['product'] = product
-        
+
         for item in basket.values():
             item['total_price'] = item['price'] * item['count']
             yield item
-        
+
     def __len__(self):
         return sum(item['count'] for item in self.basket.values())
-    
+
     def save(self):
         self.session[settings.BASKET_SESSION_ID] = self.basket
         self.session.modified = True
@@ -35,25 +35,21 @@ class Basket:
                 'count': 0,
                 'price': product.price
             }
-
         if update_count:
             self.basket[product_id]['count'] = count
-
         else:
             self.basket[product_id]['count'] += count
-        
         self.save()
-    
+
     def remove(self, product: Product):
-        product_id = str(product_id)
+        product_id = str(product.id)
         if product_id in self.basket:
             del self.basket[product_id]
-            self.save
-    
+            self.save()
+
     def get_total_price_position(self):
         return sum(item['count'] * item['price'] for item in self.basket.values())
 
     def clear(self):
         del self.session[settings.BASKET_SESSION_ID]
         self.session.modified = True
-        self.save()

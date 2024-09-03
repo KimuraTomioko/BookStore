@@ -133,3 +133,26 @@ class AddOrder(forms.ModelForm):
         required = False
     )
 
+''' class Return(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ')
+    reason = models.TextField(verbose_name='Причина возврата')
+    date_returned = models.DateTimeField(verbose_name='Дата возврата')
+
+    def __str__(self):
+        return f'{self.order.pk} - {self.date_returned}'
+
+    class Meta:
+        verbose_name = 'Возврат'
+        verbose_name_plural = 'Возвраты'
+'''
+
+class ReturnProductForm(forms.ModelForm):
+    class Meta:
+        model = Return
+        fields = ('order', 'reason', 'date_returned')
+
+        widgets = {
+            'order': forms.Select(),
+            'reason': forms.Textarea(attrs={'class':'form-control'}),
+            'date_returned': forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        }

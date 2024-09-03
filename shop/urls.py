@@ -14,5 +14,6 @@ urlpatterns = [
     path('supplier/update/<int:pk>', UpdateSupplier.as_view(), name = 'supplier_update'),
     path('supplier/delete/<int:pk>', DeleteSupplier.as_view(), name = 'supplier_delete'),
     path('warehouse/add/', AddWarehouse.as_view(), name='add_warehouse'),
-    path('order/<int:pk>/', OrderDetail.as_view(), name='order_detail')
+    path('order/<int:pk>/', OrderDetail.as_view(), name='order_detail'),
+    path('product/more/<int:id>/', get_one_product, name='get_one_product'),
 ]

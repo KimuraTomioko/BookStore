@@ -98,6 +98,10 @@
                     </div>
                 </div>
 
+                <div class="product-section">
+                    <a href="{% url 'get_one_product' product.id %}" class="btn btn-success btn-lg">Купить за {{ product.price }} руб.</a>
+                </div>
+
                 <div class="review-section">
                     <h3>Отзывы:</h3>
                     <ul>
@@ -122,5 +126,4 @@
     </div>
 </body>
 </html>
-
 

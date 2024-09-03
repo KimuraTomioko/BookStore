@@ -1,4 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
+
+from basket.forms import BasketAddProductForm
 from .models import *
 from .forms import * 
 from django.contrib.auth.decorators import login_required, permission_required
@@ -50,11 +52,18 @@ def get_product_by_id(request, id):
 def get_one_filter_product(request):
     find_product = Product.objects.filter(is_exists=request.GET.get('is_ex'))
     context = {
-        'find_product': find_product
+        'find_product': find_product,
     }
 
     return render(request, 'shop/product/filter.html', context)
 
+def get_one_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    context = {
+        'product': product,
+        'form_basket': BasketAddProductForm
+    }
+    return render(request, 'shop/product/one_product.html', context)
 
 def get_more_filter_product(request):
     find_product = Product.objects.filter(
@@ -209,3 +218,7 @@ class UpdateRating(UpdateView):
     model = Review
     form_class = FeebBack
     template_name = 'product_by_id.html'
+
+
+
+            

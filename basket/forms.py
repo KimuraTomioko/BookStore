@@ -7,12 +7,13 @@ class BasketAddProductForm(forms.Form):
     update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
 class OrderForm(forms.ModelForm):
+    class Meta:
         model = Order
         fields = (
+            'buyer_lastname',
             'buyer_name',
-            'buyer_firstname',
             'buyer_surname',
             'comment',
-            'delivery_address',
-            'delivery_type'
+            'delivery_type',
+            'delivery_address'
         )
