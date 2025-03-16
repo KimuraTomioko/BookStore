@@ -25,7 +25,8 @@ class AdminCategory(admin.ModelAdmin):
 
 @admin.register(Order)
 class AdminOrder(admin.ModelAdmin):
-    list_display = ('buyer_lastname', 'buyer_name', 'buyer_surname', 'delivery_address', 'date_create')
+    list_display = ('user', 'buyer_lastname', 'buyer_name', 'buyer_surname', 'delivery_address', 'date_create', 'is_packed', 'is_ready')
+    list_editable = ('is_packed', 'is_ready')
 
 @admin.register(Product)
 class AdminProduct(admin.ModelAdmin):
@@ -40,7 +41,14 @@ class AdminPos_parametr(admin.ModelAdmin):
 
 @admin.register(Pos_order)
 class AdminPos_order(admin.ModelAdmin):
-    list_display = ('product', 'order', 'count')
+    list_display = ('id', 'product', 'order', 'count', 'discount', 'sum_price_count_display')
+
+    def sum_price_count_display(self, obj):
+        return obj.sum_price_count()
+    
+    sum_price_count_display.short_description = 'Сумма (с учётом скидки)'
+
+    list_display_links = ('order',)
 
 @admin.register(Manufacturer)
 class AdminManufacturer(admin.ModelAdmin):
@@ -60,8 +68,8 @@ class AdminInventory(admin.ModelAdmin):
 
 @admin.register(Review)
 class AdminReview(admin.ModelAdmin):
-    list_display = ('product', 'user_name', 'rating')
-    list_display_links = ('user_name',)
+    list_display = ('product', 'user', 'rating')
+    list_display_links = ('user',)
 
 @admin.register(Discount)
 class AdminDiscount(admin.ModelAdmin):

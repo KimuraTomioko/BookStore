@@ -19,32 +19,26 @@ def product_list(request):
 def get_product_by_id(request, id):
     product_by_id = get_object_or_404(Product, pk=id)
     if request.method == 'POST':
+        if Review.objects.filter(product=product_by_id, user = request.user).exists():
+            messages.error(request, 'Вы не можете оставить более 1 отзыва под товаром!')
+            return redirect('product_filter_page')
+    
         comment_form = FeebBack(request.POST)
         if comment_form.is_valid():
             review = comment_form.save(commit=False)
-            review.user_name = request.user.username
+            review.user = request.user
             review.product = product_by_id
             review.save()
-            context = {
-                'form': comment_form,
-                'product': product_by_id 
-            }
-            return render(request, 'shop/product/product_by_id.html', context)
-
-        else:
-            context = {
-                'form': comment_form,
-                'product': product_by_id 
-            }
-            return render(request, 'shop/product/product_by_id.html', context)
-            
+            messages.success(request, 'Ваш отзыв был успешно оставлен!')
+            return redirect('product_filter_page')
     else:
         comment_form = FeebBack()
-        context = {
-            'form': comment_form,
-            'product': product_by_id 
-        }
-        return render(request, 'shop/product/product_by_id.html', context)
+    
+    context = {
+        'form': comment_form,
+        'product': product_by_id
+    }
+    return render(request, 'shop/product/product_by_id.html', context)
     
     
 
@@ -90,6 +84,11 @@ def product_catalog_with_filter(request):
             list_product = list_product.filter(price__gte=product_form.cleaned_data.get('min_price'))
         if product_form.cleaned_data.get('max_price'):
             list_product = list_product.filter(price__lte=product_form.cleaned_data.get('max_price'))
+    
+    search_query = request.GET.get('search')
+    if search_query:
+        list_product = list_product.filter(name__icontains=search_query)
+        
         
     context = {
         'product_list': list_product,

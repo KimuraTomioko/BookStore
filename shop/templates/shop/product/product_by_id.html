@@ -1,39 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ product.name }}</title>
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_name %}
+    {{ product.name }}
+{% endblock %}
+
+{% block link_additional %}
     <link rel="stylesheet" href="{% static 'shop/css/bootstrap.css' %}">
     <style>
         body {
             background-color: #f8f9fa;
             padding-top: 20px;
         }
+
         .container {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .product-photo {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
         }
+
         .product-section {
             border: 1px solid #dee2e6;
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
         }
-        .product-details {
-            margin-top: 20px;
-        }
+
         .product-params, .product-tags {
             list-style-type: none;
             padding: 0;
         }
+
         .product-params li, .product-tags li {
             background-color: #e9ecef;
             border-radius: 5px;
@@ -41,19 +45,18 @@
             margin-bottom: 5px;
             display: inline-block;
         }
-        .product-category {
-            font-weight: bold;
-            font-size: 18px;
-        }
+
         .review-section {
             margin-top: 40px;
         }
+
         .review-form {
             margin-top: 20px;
         }
     </style>
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -66,7 +69,7 @@
             <div class="col-md-8">
                 <div class="product-section">
                     <h1>{{ product.name }}</h1>
-                    <p class="product-category">Категория: {{ product.category }}</p>
+                    <p>Категория: {{ product.category }}</p>
                     <p>{{ product.description }}</p>
                     <p>Цена: {{ product.price }} руб.</p>
                 </div>
@@ -77,36 +80,34 @@
                 </div>
 
                 <div class="product-section">
-                    <div class="product-details">
-                        <h5>Характеристики:</h5>
-                        <ul class="product-params">
-                            {% for param in product.parametr.all %}
-                                <li>{{ param.name }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                    <h5>Характеристики:</h5>
+                    <ul class="product-params">
+                        {% for param in product.parametr.all %}
+                            <li>{{ param.name }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
 
                 <div class="product-section">
-                    <div class="product-details">
-                        <h5>Теги:</h5>
-                        <ul class="product-tags">
-                            {% for tag in product.tag.all %}
-                                <li>{{ tag.name }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                    <h5>Теги:</h5>
+                    <ul class="product-tags">
+                        {% for tag in product.tag.all %}
+                            <li>{{ tag.name }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
 
                 <div class="product-section">
-                    <a href="{% url 'get_one_product' product.id %}" class="btn btn-success btn-lg">Купить за {{ product.price }} руб.</a>
+                    <a href="{% url 'get_one_product' product.id %}" class="btn btn-success btn-lg">
+                        Купить за {{ product.price }} руб.
+                    </a>
                 </div>
 
                 <div class="review-section">
                     <h3>Отзывы:</h3>
                     <ul>
                         {% for review in product.review_set.all %}
-                            <li><strong>{{ review.user_name }}</strong>: {{ review.comment }} ({{ review.rating }} звёзд)</li>
+                            <li><strong>{{ review.user.username }}</strong>: {{ review.comment }} ({{ review.rating }} звёзд)</li>
                         {% empty %}
                             <li>Нет отзывов</li>
                         {% endfor %}
@@ -120,10 +121,7 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</body>
-</html>
-
+{% endblock %}

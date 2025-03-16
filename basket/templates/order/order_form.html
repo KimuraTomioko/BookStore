@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
 
 {% block title_name %}
-Создание заказа
+    Создание заказа
 {% endblock %}
 
 {% block content %}
-<h1>Создание заказа</h1>
-<form action="{% url 'basket_buy' %}" method="post">
-    {% csrf_token %}
-    {{ form_order.as_p }}
-    <button type="submit" class="btn btn-outline-primary">Подтвердить заказ</button>
-</form>
-<a href="{% url 'basket_detail' %}" class="btn btn-outline-dark">Обратно к корзине</a>
+<div class="container p-3">
+    <h1 class="text-center mb-4">Создание заказа</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form action="{% url 'basket_buy' %}" method="post">
+                        {% csrf_token %}
+                        {{ form_order.as_p }}
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary mt-3">Подтвердить заказ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'basket_detail' %}" class="btn btn-outline-secondary">Обратно к корзине</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

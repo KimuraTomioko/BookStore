@@ -1,71 +1,76 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'shop/css/bootstrap.css' %}">
-</head>
-<body>
-<h1 style="display: flex; justify-content: center; color: sandybrown">Подробнее о {{ product.name }}</h1>
-<div class="p-3">
-    <table class="table table-bordered table-dark">
-        <thead class="table-primary">
-        <tr>
-            <th>Название</th>
-            <th>Описание</th>
-            <th>Стоимость</th>
-            <th>В наличии на складе</th>
-            <th>Теги</th>
-            <th>Картинка</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>
-                {% if product.description %}
-                    {{ product.description }}
-                {% else %}
-                    Описание отсутствует
-                {% endif %}
-            </td>
-            <td>{{ product.price }}</td>
-            <td>
-                <ul>
-                    {% for warehouse in product.warehouse.all %}
-                        <li>{{ warehouse.location }}</li>
-                    {% empty %}
-                        <li>Нет в наличии на складах</li>
-                    {% endfor %}
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    {% for tag in product.tag.all %}
-                        <li>{{ tag.name }}</li>
-                    {% empty %}
-                        <li>Нет актуальных тегов</li>
-                    {% endfor %}
-                </ul>
-            </td>
-            <td>
-                {% if product.photo %}
-                    <img src="{{ product.photo.url }}" alt="..."
-                         style="max-height: 400px; max-width: 400px; object-fit: contain; border-radius: 20px">
-                {% else %}
-                    <img src="{% static 'shop/image/no_photo.jpg' %}" alt="...">
-                {% endif %}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <form method="post" action="{% url 'basket_add' product.pk %}" class="my-2">
-        {% csrf_token %}
-        {{ form_basket }}
-        <button type="submit" class="btn btn-outline-success my-2">Добавить в корзину</button>
-    </form>
-    <a href="{% url 'product_filter_page' %}" class="btn btn-outline-dark">Назад к каталогу</a>
+
+{% block title_name %}
+    Подробнее о {{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center text-warning mb-4">Подробнее о "{{ product.name }}"</h1>
+
+    <div class="card shadow-lg p-4 bg-light">
+        <table class="table table-hover align-middle text-center">
+            <thead class="table-warning">
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Стоимость</th>
+                <th>Наличие</th>
+                <th>Теги</th>
+                <th>Картинка</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="fw-bold text-primary">{{ product.name }}</td>
+                <td>
+                    {% if product.description %}
+                        {{ product.description }}
+                    {% else %}
+                        <span class="text-muted fst-italic">Описание отсутствует</span>
+                    {% endif %}
+                </td>
+                <td class="text-success fw-bold">{{ product.price }} ₽</td>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for warehouse in product.warehouse.all %}
+                            <li><span class="badge bg-success">{{ warehouse.location }}</span></li>
+                        {% empty %}
+                            <li><span class="badge bg-danger">Нет в наличии</span></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for tag in product.tag.all %}
+                            <li><span class="badge bg-info text-dark">{{ tag.name }}</span></li>
+                        {% empty %}
+                            <li><span class="badge bg-secondary">Нет тегов</span></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    {% if product.photo %}
+                        <img src="{{ product.photo.url }}" alt="Фото товара"
+                             style="max-height: 200px; max-width: 200px; object-fit: contain; border-radius: 10px">
+                    {% else %}
+                        <img src="{% static 'shop/image/no_photo.jpg' %}" alt="Фото отсутствует"
+                             style="max-height: 200px; max-width: 200px; object-fit: contain; border-radius: 10px">
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <form method="post" action="{% url 'basket_add' product.pk %}" class="d-flex align-items-center">
+            {% csrf_token %}
+            {{ form_basket }}
+            <button type="submit" class="btn btn-success btn-lg ms-2">Добавить в корзину</button>
+        </form>
+        <a href="{% url 'product_filter_page' %}" class="btn btn-outline-dark btn-lg">Назад к каталогу</a>
+    </div>
 </div>
-</body>
-</html>
+{% endblock %}

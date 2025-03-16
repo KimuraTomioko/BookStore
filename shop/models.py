@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse_lazy
 from .utils import sum_price_count
+from django.contrib.auth.models import User
 
 # Create your models here.
 MAX_LENGTH_CHAR = 255
@@ -81,6 +82,7 @@ class Order(models.Model):
         (PICKUPPOINT, 'Пункт выдачи')
 
     ]
+    user = models.ForeignKey( User, on_delete=models.PROTECT, verbose_name='Пользователь', null=False, blank=False)
     buyer_lastname = models.CharField(max_length=MAX_LENGTH_CHAR, verbose_name='Фамилия покупателя')
     buyer_name = models.CharField(max_length=MAX_LENGTH_CHAR, verbose_name='Имя покупателя')
     buyer_surname = models.CharField(max_length=MAX_LENGTH_CHAR, blank=True, null=True, verbose_name='Отчество покупателя')
@@ -89,6 +91,8 @@ class Order(models.Model):
     delivery_type = models.CharField(max_length=2, choices=TYPE_DELIVERY, default=SHOP, verbose_name='Способ доставки')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_finish = models.DateTimeField(null=True, blank=True, verbose_name='Дата завершения')
+    is_packed = models.BooleanField(default=False, verbose_name='Товар упакован')
+    is_ready = models.BooleanField(default=False, verbose_name='Товар готов к получению')
 
     product = models.ManyToManyField('Product', through='Pos_order', verbose_name='Товар')
 
@@ -206,16 +210,17 @@ class Inventory(models.Model):
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')
-    user_name = models.CharField(max_length=MAX_LENGTH_CHAR, verbose_name='Имя пользователя')
+    user = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name='Пользователь', related_name='reviews')
     rating = models.PositiveIntegerField(verbose_name='Рейтинг', validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField(verbose_name='Комментарий')
 
     def __str__(self):
-        return f'{self.user_name} - {self.product.name}'
+        return f'{self.user.username} - {self.product.name}'
 
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
+        unique_together = ('product', 'user')
 
 
 class Discount(models.Model):

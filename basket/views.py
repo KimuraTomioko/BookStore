@@ -46,8 +46,9 @@ def basket_buy(request):
 
     form = OrderForm(request.POST)
     if form.is_valid():
-        # Убедитесь, что ключи аргументов соответствуют полям модели Order
+        # Создаём заказ, привязывая его к текущему пользователю
         order = Order.objects.create(
+            user=request.user,  # Привязка к текущему пользователю
             buyer_lastname=form.cleaned_data['buyer_lastname'],
             buyer_name=form.cleaned_data['buyer_name'],
             buyer_surname=form.cleaned_data['buyer_surname'],
@@ -55,9 +56,8 @@ def basket_buy(request):
             delivery_type=form.cleaned_data['delivery_type'],
             delivery_address=form.cleaned_data['delivery_address']
         )
-        order.price = basket.get_total_price_position()  # Предполагается, что поле price существует в Order
-        order.save()
 
+        # Проходим по товарам в корзине и создаём позиции заказа
         for item in basket:
             Pos_order.objects.create(
                 product=item['product'],
@@ -65,6 +65,7 @@ def basket_buy(request):
                 order=order
             )
 
+        # Очищаем корзину и перенаправляем пользователя
         basket.clear()
         return redirect('basket_detail')
 

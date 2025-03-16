@@ -1,25 +1,39 @@
-<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+<header class="d-flex flex-wrap justify-content-between align-items-center py-3 mb-4 border-bottom">
+    <!-- Логотип или название -->
     <a href="{% url 'product_filter_page' %}"
        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <span class="fs-4">Лучший магазин</span>
+        <span class="fs-4"><strong>DjangoBookStore</strong></span>
     </a>
+
+    <!-- Строка поиска по центру -->
+    <form method="get" action="{% url 'product_filter_page' %}" class="d-flex col-md-6 justify-content-center">
+        <input type="text" name="search" class="form-control me-2" placeholder="Поиск..." aria-label="Поиск">
+        <button class="btn btn-outline-primary" type="submit">Искать</button>
+    </form>
+
+    <!-- Навигация -->
     <ul class="nav nav-pills">
-        <li class="nav-item"><a href="{% url 'product_filter_page' %}"
-                                class="nav-link px-2 text-body-secondary">Каталог</a></li>
-        <li class="nav-item"><a href="{% url 'product_list' %}"
-                                class="nav-link px-2 text-body-secondary">Продукты с заказами</a></li>
-        <li class="nav-item"><a href="{% url 'supplier_list' %}"
-                                class="nav-link px-2 text-body-secondary">Поставщики</a></li>
+        <li class="nav-item">
+            <a href="{% url 'product_filter_page' %}" class="nav-link px-2 text-body-secondary">Каталог</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'product_list' %}" class="nav-link px-2 text-body-secondary">Продукты с заказами</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'basket_detail' %}" class="nav-link px-2 text-body-secondary">Корзина</a>
+        </li>
 
         {% if request.user.is_anonymous %}
-            <li><a href="{% url 'log in' %}"
-                   class="btn btn-outline-success me-2">Авторизация</a></li>
-            <li><a href="{% url 'regis' %}"
-                   class="btn btn-outline-warning me-2">Регистрация</a></li>
+            <li>
+                <a href="{% url 'log in' %}" class="btn btn-outline-success me-2">Авторизация</a>
+            </li>
+            <li>
+                <a href="{% url 'regis' %}" class="btn btn-outline-warning me-2">Регистрация</a>
+            </li>
         {% else %}
-            <li><a href="{% url 'log out' %}"
-                   class="btn btn-outline-danger me-2">Выйти</a></li>
+            <li>
+                <a href="{% url 'log out' %}" class="btn btn-outline-danger me-2">Выйти</a>
+            </li>
         {% endif %}
     </ul>
-
 </header>

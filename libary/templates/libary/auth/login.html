@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Авторизация</title>
     {% load static %}
+    {% load custom_tags %}
     <link rel="stylesheet" href="{% static 'shop/css/bootstrap.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -42,6 +43,19 @@
             background-color: #d1ecf1;
             color: #0c5460;
         }
+        .btn-custom {
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .btn-custom.active-button {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom.inactive-button {
+            background-color: #6c757d;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -62,15 +76,14 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="text-center">
-                    <input type="submit" value="Войти" class="btn btn-primary">
+                    <input type="submit" value="Войти" class="btn btn-primary btn-custom">
                 </div>
             </form>
             <div class="text-center mt-3">
-                <a href="{% url 'regis' %}" class="btn btn-link">Зарегистрироваться</a>
-                <a href="{% url 'home_page' %}" class="btn btn-link">Назад</a>
+                <a href="{% url 'regis' %}" class="btn btn-link {% active_class 'regis' 'active-button' %} btn-custom">Зарегистрироваться</a>
+                <a href="{% url 'home_page' %}" class="btn btn-link {% active_class 'home_page' 'inactive-button' %} btn-custom">Назад</a>
             </div>
         </div>
     </div>
 </body>
 </html>
-

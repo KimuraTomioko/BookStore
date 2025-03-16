@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Каталог с фильтрами</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'shop/css/bootstrap.css' %}">
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% load custom_filters %}
+
+{% block title_name %}
+    Каталог с фильтрами
+{% endblock %}
+
+{% block link_additional %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             background-color: #f8f9fa;
             padding-top: 20px;
         }
+
         .container {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
+        .active-button {
+            font-weight: bold;
+            color: #007bff;
+        }
+
         .product-card {
             border: 1px solid #dee2e6;
             border-radius: 8px;
@@ -26,84 +36,113 @@
             background-color: #ffffff;
             text-align: center;
         }
+
         .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .product-card img {
-            max-width: 100%;
+            width: 100%; /* Заполняет всю ширину карточки */
+            height: 200px; /* Фиксированная высота */
+            object-fit: contain; /* Показывает всё изображение с пропорциями */
             border-radius: 8px;
-            height: 200px;
-            object-fit: cover;
         }
+
         .product-card h1 {
             font-size: 20px;
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         .product-card p {
             margin-bottom: 10px;
         }
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 10px;
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1055;
         }
-        .user-greeting {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+
+        .toast {
+            opacity: 0.9;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .toast .btn-close {
+            background-color: transparent;
+            border: none;
+            color: #000;
+            font-size: 1rem;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        /* Стили для кнопки и боковой панели с фильтрами */
+        .filter-button {
+            margin-bottom: 20px;
+        }
+
+        .filter-panel {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1050;
+            transition: right 0.3s ease-in-out;
+        }
+
+        .filter-panel.open {
+            right: 0;
+        }
+
+        .filter-panel .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
         }
     </style>
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
+    <div class="toast-container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="toast alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
     <div class="container">
-        <div class="row mb-3">
-            <div class="col-8">
-                <ul class="nav">
-                    {% if request.user.is_anonymous %}
-                        <li class="nav-item">
-                            <a class="btn btn-outline-primary" href="{% url 'log in' %}">
-                                <i class="fas fa-sign-in-alt"></i> Авторизация
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-success ml-2" href="{% url 'regis' %}">
-                                <i class="fas fa-user-plus"></i> Регистрация
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="btn btn-outline-primary" href="{% url 'log out' %}">
-                                <i class="fas fa-sign-out-alt"></i> Выход из профиля
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="col-4 text-right user-greeting">
-                {% if user.is_authenticated %}
-                    <img src="{% static 'path_to_default_avatar.jpg' %}" class="avatar" alt="Avatar">
-                {% endif %}
-                Здравствуйте, {{ user }}
-            </div>
+        <!-- Кнопка для открытия фильтров -->
+        <button class="btn btn-info filter-button" id="filterToggle">
+            <i class="fas fa-filter"></i> Фильтры
+        </button>
+
+        <!-- Панель с фильтрами -->
+        <div class="filter-panel" id="filterPanel">
+            <span class="close-button" id="closeFilterPanel">&times;</span>
+            <form method="get">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-3">
+                    <i class="fas fa-check"></i> Применить фильтры
+                </button>
+            </form>
         </div>
 
-        <form method="get" class="mb-3">
-            <div class="form-row">
-                <div class="col">
-                    {{ form.as_p }}
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-info">
-                        <i class="fas fa-filter"></i> Применить фильтр
-                    </button>
-                </div>
-            </div>
-        </form>
-
+        <!-- Список продуктов -->
         <div class="row">
             {% for product in product_list %}
                 <div class="col-md-4">
@@ -115,17 +154,37 @@
                                 <img src="{% static 'shop/images/no_photo.jpg' %}" class="card-img-top" alt="No Photo Available">
                             {% endif %}
                             <h1>{{ product.name }}</h1>
-                            <p>Цена: {{ product.price }} руб.</p>
+                            <p>Цена: {{ product.price|currency:"руб." }}</p>
                         </div>
                     </a>
                 </div>
             {% endfor %}
         </div>
     </div>
-</body>
-</html>
 
+    <script>
+        // Скрипт для открытия/закрытия панели с фильтрами
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterToggle = document.getElementById('filterToggle');
+            const filterPanel = document.getElementById('filterPanel');
+            const closeFilterPanel = document.getElementById('closeFilterPanel');
 
+            filterToggle.addEventListener('click', () => {
+                filterPanel.classList.add('open');
+            });
 
+            closeFilterPanel.addEventListener('click', () => {
+                filterPanel.classList.remove('open');
+            });
 
-
+            // Автоматическое скрытие сообщений через 5 секунд
+            const toasts = document.querySelectorAll('.toast');
+            toasts.forEach((toast) => {
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300); // Удалить элемент после анимации
+                }, 5000);
+            });
+        });
+    </script>
+{% endblock %}

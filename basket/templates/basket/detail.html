@@ -8,46 +8,56 @@
     <div class="p-3">
         <h1>Ваша корзина</h1>
 
-        <table class="table table-bordered my-2">
-            <thead>
-            <tr>
-                <th>Изображение</th>
-                <th>Товар</th>
-                <th>Количество</th>
-                <th>Цена за единицу</th>
-                <th>Цена за позицию</th>
-                <th>Действие</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for item in basket %}
+        {% if basket %}
+            <table class="table table-bordered my-2">
+                <thead>
                 <tr>
-                    <td>
-                        {% if item.product.photo %}
-                            <img src="{{ item.product.photo.url }}" style="max-height: 100px; max-width: 100px; object-fit: contain; border-radius: 20px" alt="...">
-                        {% else %}
-                            <img src="{% static 'shop/image/no_photo.jpg' %}" alt="...">
-                        {% endif %}
-                    </td>
-                    <td><a href="{% url 'get_one_product' item.product.pk %}">{{ item.product.name }}</a></td>
-                    <td>{{ item.count }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.total_price }} руб.</td>
-                    <td><a href="{% url 'basket_remove' item.product.pk %}" class="btn btn-outline-danger">Убрать из
-                        корзины</a></td>
+                    <th>Изображение</th>
+                    <th>Товар</th>
+                    <th>Количество</th>
+                    <th>Цена за единицу</th>
+                    <th>Цена за позицию</th>
+                    <th>Действие</th>
                 </tr>
-            {% endfor %}
-            <tr>
-                <td colspan="2">Всего:</td>
-                <td>{{ basket|length }} шт.</td>
-                <td colspan="2">{{ basket.get_total_price_position }} руб.</td>
-                <td><a href="{% url 'basket_clear' %}" class="btn btn-outline-danger">Очистить корзину</a></td>
-            </tr>
-            </tbody>
-        </table>
-        <a href="{% url 'product_filter_page' %}" class="btn btn-outline-success my-2">Обратно к каталогу товаров</a>
-        {% if basket|length > 0 %}
+                </thead>
+                <tbody>
+                {% for item in basket %}
+                    <tr>
+                        <td>
+                            {% if item.product.photo %}
+                                <img src="{{ item.product.photo.url }}" style="max-height: 100px; max-width: 100px; object-fit: contain; border-radius: 20px" alt="...">
+                            {% else %}
+                                <img src="{% static 'shop/image/no_photo.jpg' %}" alt="...">
+                            {% endif %}
+                        </td>
+                        <td><a href="{% url 'get_one_product' item.product.pk %}">{{ item.product.name }}</a></td>
+                        <td>{{ item.count }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.total_price }} руб.</td>
+                        <td>
+                            <a href="{% url 'basket_remove' item.product.pk %}" class="btn btn-outline-danger">
+                                Убрать из корзины
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2">Всего:</td>
+                    <td>{{ basket|length }} шт.</td>
+                    <td colspan="2">{{ basket.get_total_price_position }} руб.</td>
+                    <td>
+                        <a href="{% url 'basket_clear' %}" class="btn btn-outline-danger">Очистить корзину</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="{% url 'product_filter_page' %}" class="btn btn-outline-success my-2">Обратно к каталогу товаров</a>
             <a href="{% url 'order_open' %}" class="btn btn-outline-warning">Купить</a>
+        {% else %}
+            <p class="text-center my-4">Ваша корзина пуста.</p>
+            <div class="text-center">
+                <a href="{% url 'product_filter_page' %}" class="btn btn-outline-success">Перейти в каталог товаров</a>
+            </div>
         {% endif %}
     </div>
 {% endblock %}
