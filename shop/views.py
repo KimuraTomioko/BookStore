@@ -10,9 +10,9 @@ from django.contrib import messages
 from .utils import CalculateMoney
 
 def product_list(request):
-    list_product = Product.objects.all()
+    list_orders = Order.objects.all()
     context = {
-        'product_list': list_product
+        'order_list': list_orders
     }
     return render(request, 'shop/product/catalog.html', context)
 
