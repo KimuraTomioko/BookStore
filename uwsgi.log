@@ -281,3 +281,119 @@ spawned uWSGI worker 4 (pid: 10, cores: 1)
 Thu Mar 20 16:08:47 2025 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
 Thu Mar 20 16:08:47 2025 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
 Thu Mar 20 16:08:47 2025 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 13:37:31 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: f708fc41e745
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffffbe7d2940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xffffbe7d2940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+spawned uWSGI worker 2 (pid: 8, cores: 1)
+spawned uWSGI worker 3 (pid: 9, cores: 1)
+spawned uWSGI worker 4 (pid: 10, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {36 vars in 1098 bytes} [Thu Mar 20 16:37:36 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 142 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 1/2] 172.21.0.1 () {36 vars in 1096 bytes} [Thu Mar 20 16:37:37 2025] GET /shop/product/details/1/ => generated 7906 bytes in 118 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 17:44:28 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: adbbc2e4fc20
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffff95992940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xffff95992940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 6, cores: 1)
+spawned uWSGI worker 2 (pid: 7, cores: 1)
+spawned uWSGI worker 3 (pid: 8, cores: 1)
+spawned uWSGI worker 4 (pid: 9, cores: 1)
+[pid: 6|app: 0|req: 1/1] 172.21.0.1 () {38 vars in 1127 bytes} [Thu Mar 20 20:44:32 2025] GET /shop/product/details/1/ => generated 7906 bytes in 650 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 1/2] 172.21.0.1 () {36 vars in 1052 bytes} [Thu Mar 20 20:44:33 2025] GET /image/2025/03/18/cover.webp => generated 0 bytes in 82 msecs (HTTP/1.1 304) 5 headers in 175 bytes (0 switches on core 0)
+[pid: 6|app: 0|req: 2/3] 172.21.0.1 () {36 vars in 1098 bytes} [Thu Mar 20 20:44:43 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 78 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 6|app: 0|req: 3/4] 172.21.0.1 () {36 vars in 1053 bytes} [Thu Mar 20 20:44:43 2025] GET /image/2025/03/18/cover.webp => generated 0 bytes in 5 msecs (HTTP/1.1 304) 5 headers in 175 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 2/5] 172.21.0.1 () {36 vars in 1084 bytes} [Thu Mar 20 20:44:46 2025] GET /shop/product/all/ => generated 1995 bytes in 60 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+Not Found: /static/shop/css/bootstrap.css.map
+[pid: 9|app: 0|req: 3/6] 172.21.0.1 () {30 vars in 871 bytes} [Thu Mar 20 20:45:14 2025] GET /static/shop/css/bootstrap.css.map => generated 2814 bytes in 39 msecs (HTTP/1.1 404) 6 headers in 200 bytes (1 switches on core 0)
+Not Found: /static/shop/css/bootstrap.css.map
+[pid: 9|app: 0|req: 4/7] 172.21.0.1 () {30 vars in 871 bytes} [Thu Mar 20 20:46:40 2025] GET /static/shop/css/bootstrap.css.map => generated 2814 bytes in 30 msecs (HTTP/1.1 404) 6 headers in 200 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/8] 172.21.0.1 () {38 vars in 1129 bytes} [Thu Mar 20 20:49:48 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 149 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/9] 172.21.0.1 () {36 vars in 1053 bytes} [Thu Mar 20 20:49:48 2025] GET /image/2025/03/18/cover.webp => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 175 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 1/10] 172.21.0.1 () {36 vars in 1084 bytes} [Thu Mar 20 20:49:50 2025] GET /shop/product/all/ => generated 2894 bytes in 222 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 7/11] 172.21.0.1 () {38 vars in 1115 bytes} [Thu Mar 20 20:51:27 2025] GET /shop/product/all/ => generated 2910 bytes in 73 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+Not Found: /shop/product/all/product_filter_page
+[pid: 7|app: 0|req: 2/12] 172.21.0.1 () {36 vars in 1115 bytes} [Thu Mar 20 20:51:29 2025] GET /shop/product/all/product_filter_page => generated 5687 bytes in 51 msecs (HTTP/1.1 404) 6 headers in 200 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/13] 172.21.0.1 () {36 vars in 1096 bytes} [Thu Mar 20 20:52:29 2025] GET /shop/product/details/1/ => generated 7906 bytes in 104 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 8|app: 0|req: 1/14] 172.21.0.1 () {36 vars in 1052 bytes} [Thu Mar 20 20:52:29 2025] GET /image/2025/03/18/cover.webp => generated 0 bytes in 167 msecs (HTTP/1.1 304) 5 headers in 175 bytes (0 switches on core 0)
+[pid: 8|app: 0|req: 2/15] 172.21.0.1 () {36 vars in 1084 bytes} [Thu Mar 20 20:52:31 2025] GET /shop/product/all/ => generated 2910 bytes in 61 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+Not Found: /shop/product/all/product_filter_page
+[pid: 9|app: 0|req: 9/16] 172.21.0.1 () {36 vars in 1115 bytes} [Thu Mar 20 20:52:33 2025] GET /shop/product/all/product_filter_page => generated 5687 bytes in 10 msecs (HTTP/1.1 404) 6 headers in 200 bytes (1 switches on core 0)
+Not Found: /shop/product/all/product_filter_page
+[pid: 9|app: 0|req: 10/17] 172.21.0.1 () {38 vars in 1146 bytes} [Thu Mar 20 20:53:47 2025] GET /shop/product/all/product_filter_page => generated 5687 bytes in 29 msecs (HTTP/1.1 404) 6 headers in 200 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 11/18] 172.21.0.1 () {38 vars in 1115 bytes} [Thu Mar 20 20:53:50 2025] GET /shop/product/all/ => generated 2916 bytes in 78 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/19] 172.21.0.1 () {36 vars in 1091 bytes} [Thu Mar 20 20:53:51 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 50 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/20] 172.21.0.1 () {36 vars in 1053 bytes} [Thu Mar 20 20:53:51 2025] GET /image/2025/03/18/cover.webp => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 175 bytes (0 switches on core 0)
+[pid: 6|app: 0|req: 4/21] 172.21.0.1 () {36 vars in 1084 bytes} [Thu Mar 20 20:53:56 2025] GET /shop/product/all/ => generated 2916 bytes in 146 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+/usr/local/lib/python3.11/site-packages/django/views/generic/list.py:91: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'shop.models.Supplier'> QuerySet.
+  return self.paginator_class(
+[pid: 6|app: 0|req: 5/22] 172.21.0.1 () {36 vars in 1078 bytes} [Thu Mar 20 20:54:00 2025] GET /shop/supplier/ => generated 453 bytes in 70 msecs (HTTP/1.1 200) 6 headers in 207 bytes (1 switches on core 0)
+[pid: 8|app: 0|req: 3/23] 172.21.0.1 () {36 vars in 1082 bytes} [Thu Mar 20 20:54:01 2025] GET /shop/supplier/create/ => generated 2111 bytes in 74 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 14/24] 172.21.0.1 () {36 vars in 1096 bytes} [Thu Mar 20 20:54:08 2025] GET /shop/product/details/1/ => generated 7906 bytes in 90 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/25] 172.21.0.1 () {36 vars in 1052 bytes} [Thu Mar 20 20:54:08 2025] GET /image/2025/03/18/cover.webp => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 175 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 16/26] 172.21.0.1 () {36 vars in 1096 bytes} [Thu Mar 20 20:54:21 2025] GET /shop/product/details/1/ => generated 7906 bytes in 74 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 17/27] 172.21.0.1 () {36 vars in 1052 bytes} [Thu Mar 20 20:54:21 2025] GET /image/2025/03/18/cover.webp => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 175 bytes (0 switches on core 0)
+Thu Mar 20 20:59:19 2025 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Thu Mar 20 20:59:19 2025 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Thu Mar 20 20:59:19 2025 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Thu Mar 20 20:59:19 2025 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
