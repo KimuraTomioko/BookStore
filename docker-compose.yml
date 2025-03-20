@@ -1,9 +1,17 @@
 version: "3.11.4"
 
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
   web:
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    command: uwsgi --ini /code/uwsgi.ini
     volumes:
       - .:/code
     ports:

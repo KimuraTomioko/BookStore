@@ -1,0 +1,283 @@
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 12:36:14 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: 538fb5a914c5
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffff958f2940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xffff958f2940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+spawned uWSGI worker 2 (pid: 8, cores: 1)
+spawned uWSGI worker 3 (pid: 9, cores: 1)
+spawned uWSGI worker 4 (pid: 10, cores: 1)
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+SIGINT/SIGTERM received...killing workers...
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 12:38:58 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: cc3902447f90
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffff7fdd2940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xffff7fdd2940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 6, cores: 1)
+spawned uWSGI worker 2 (pid: 7, cores: 1)
+spawned uWSGI worker 3 (pid: 8, cores: 1)
+spawned uWSGI worker 4 (pid: 9, cores: 1)
+[pid: 6|app: 0|req: 1/1] 172.21.0.1 () {36 vars in 1069 bytes} [Thu Mar 20 15:39:02 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 176 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 1/2] 172.21.0.1 () {36 vars in 1113 bytes} [Thu Mar 20 15:39:12 2025] GET /shop/product/all-filter/?search= => generated 8464 bytes in 180 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 8|app: 0|req: 1/3] 172.21.0.1 () {36 vars in 1145 bytes} [Thu Mar 20 15:39:16 2025] GET /shop/product/all-filter/?search=%D0%9C%D0%B0 => generated 8464 bytes in 181 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 8|app: 0|req: 2/4] 172.21.0.1 () {36 vars in 1116 bytes} [Thu Mar 20 15:39:18 2025] GET /shop/product/details/1/ => generated 7906 bytes in 51 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/5] 172.21.0.1 () {34 vars in 1002 bytes} [Thu Mar 20 15:39:26 2025] GET /admin/ => generated 14867 bytes in 129 msecs (HTTP/1.1 200) 9 headers in 335 bytes (1 switches on core 0)
+[pid: 8|app: 0|req: 3/6] 172.21.0.1 () {36 vars in 1068 bytes} [Thu Mar 20 15:41:52 2025] GET /admin/shop/review/ => generated 12361 bytes in 107 msecs (HTTP/1.1 200) 10 headers in 503 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/7] 172.21.0.1 () {34 vars in 903 bytes} [Thu Mar 20 15:41:52 2025] GET /admin/jsi18n/ => generated 15618 bytes in 31 msecs (HTTP/1.1 200) 7 headers in 231 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 1/8] 172.21.0.1 () {36 vars in 1092 bytes} [Thu Mar 20 15:41:54 2025] GET /admin/shop/manufacturer/ => generated 12449 bytes in 196 msecs (HTTP/1.1 200) 10 headers in 503 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 4/9] 172.21.0.1 () {34 vars in 909 bytes} [Thu Mar 20 15:41:54 2025] GET /admin/jsi18n/ => generated 15618 bytes in 9 msecs (HTTP/1.1 200) 7 headers in 231 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/10] 172.21.0.1 () {36 vars in 1068 bytes} [Thu Mar 20 15:42:01 2025] GET /admin/shop/review/ => generated 12361 bytes in 69 msecs (HTTP/1.1 200) 10 headers in 503 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/11] 172.21.0.1 () {34 vars in 1002 bytes} [Thu Mar 20 15:42:02 2025] GET /admin/ => generated 14867 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 335 bytes (1 switches on core 0)
+SIGINT/SIGTERM received...killing workers...
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 12:50:40 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: 50bea50a5f66
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffffab1e2940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xffffab1e2940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+spawned uWSGI worker 2 (pid: 8, cores: 1)
+spawned uWSGI worker 3 (pid: 9, cores: 1)
+spawned uWSGI worker 4 (pid: 10, cores: 1)
+SIGINT/SIGTERM received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 12:54:35 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: d999665fe5f7
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffffbdd42940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xffffbdd42940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 6, cores: 1)
+spawned uWSGI worker 2 (pid: 7, cores: 1)
+spawned uWSGI worker 3 (pid: 8, cores: 1)
+spawned uWSGI worker 4 (pid: 9, cores: 1)
+[pid: 8|app: 0|req: 1/1] 172.21.0.1 () {38 vars in 1147 bytes} [Thu Mar 20 15:54:49 2025] GET /shop/product/details/1/ => generated 7906 bytes in 274 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 8|app: 0|req: 2/2] 172.21.0.1 () {36 vars in 1097 bytes} [Thu Mar 20 15:54:52 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 45 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 8|app: 0|req: 3/3] 172.21.0.1 () {36 vars in 1084 bytes} [Thu Mar 20 15:54:53 2025] GET /shop/product/all/ => generated 1995 bytes in 12 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+SIGINT/SIGTERM received...killing workers...
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 12:57:22 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: f8fd3e2cb083
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffffb6132940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xffffb6132940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+spawned uWSGI worker 2 (pid: 8, cores: 1)
+spawned uWSGI worker 3 (pid: 9, cores: 1)
+spawned uWSGI worker 4 (pid: 10, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {36 vars in 1098 bytes} [Thu Mar 20 15:57:30 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 283 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {36 vars in 1084 bytes} [Thu Mar 20 15:57:32 2025] GET /shop/product/all/ => generated 1995 bytes in 37 msecs (HTTP/1.1 200) 6 headers in 208 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 1/3] 172.21.0.1 () {36 vars in 1064 bytes} [Thu Mar 20 15:57:35 2025] GET /basket/ => generated 2865 bytes in 182 msecs (HTTP/1.1 200) 8 headers in 573 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 1/4] 172.21.0.1 () {36 vars in 1096 bytes} [Thu Mar 20 15:57:41 2025] GET /shop/product/details/1/ => generated 7906 bytes in 185 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/5] 172.21.0.1 () {36 vars in 1096 bytes} [Thu Mar 20 15:57:43 2025] GET /shop/product/details/1/ => generated 7906 bytes in 57 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.21 (64bit) on [Thu Mar 20 13:04:07 2025] ***
+compiled with version: 12.2.0 on 20 March 2025 12:32:40
+os: Linux-5.15.49-linuxkit-pr #1 SMP PREEMPT Thu May 25 07:27:39 UTC 2023
+nodename: 176a84923658
+machine: aarch64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /code
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /code
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.11.4 (main, Aug 16 2023, 07:34:21) [GCC 12.2.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xffff7f0a2940
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 364600 bytes (356 KB) for 4 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xffff7f0a2940 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+spawned uWSGI worker 2 (pid: 8, cores: 1)
+spawned uWSGI worker 3 (pid: 9, cores: 1)
+spawned uWSGI worker 4 (pid: 10, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.21.0.1 () {36 vars in 1097 bytes} [Thu Mar 20 16:04:13 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 270 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 1/2] 172.21.0.1 () {36 vars in 1096 bytes} [Thu Mar 20 16:04:15 2025] GET /shop/product/details/1/ => generated 7906 bytes in 213 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 2/3] 172.21.0.1 () {36 vars in 1089 bytes} [Thu Mar 20 16:04:17 2025] GET /shop/product/more/1/ => generated 6758 bytes in 93 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/4] 172.21.0.1 () {44 vars in 1208 bytes} [Thu Mar 20 16:04:21 2025] POST /basket/add/1/ => generated 0 bytes in 53 msecs (HTTP/1.1 302) 9 headers in 619 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 1/5] 172.21.0.1 () {38 vars in 1117 bytes} [Thu Mar 20 16:04:21 2025] GET /basket/ => generated 4544 bytes in 104 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/6] 172.21.0.1 () {36 vars in 1099 bytes} [Thu Mar 20 16:04:23 2025] GET /basket/create_order/ => generated 4749 bytes in 29 msecs (HTTP/1.1 200) 8 headers in 390 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 3/7] 172.21.0.1 () {44 vars in 1230 bytes} [Thu Mar 20 16:05:09 2025] POST /basket/buy/ => generated 0 bytes in 73 msecs (HTTP/1.1 302) 9 headers in 582 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 4/8] 172.21.0.1 () {38 vars in 1080 bytes} [Thu Mar 20 16:05:09 2025] GET /basket/ => generated 2865 bytes in 14 msecs (HTTP/1.1 200) 8 headers in 573 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 5/9] 172.21.0.1 () {36 vars in 1081 bytes} [Thu Mar 20 16:05:19 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 37 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 6/10] 172.21.0.1 () {36 vars in 1064 bytes} [Thu Mar 20 16:05:23 2025] GET /basket/ => generated 2865 bytes in 32 msecs (HTTP/1.1 200) 8 headers in 573 bytes (1 switches on core 0)
+[pid: 10|app: 0|req: 7/11] 172.21.0.1 () {36 vars in 1081 bytes} [Thu Mar 20 16:05:25 2025] GET /shop/product/all-filter/ => generated 8464 bytes in 35 msecs (HTTP/1.1 200) 7 headers in 222 bytes (1 switches on core 0)
+Thu Mar 20 16:08:47 2025 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Thu Mar 20 16:08:47 2025 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Thu Mar 20 16:08:47 2025 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!

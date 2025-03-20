@@ -30,7 +30,7 @@ def publishing_house_create(request):
         if form_published_house.is_valid():
             new_publishing_house = Publishing_house(**form_published_house.cleaned_data)
             new_publishing_house.save()
-            return redirect('home_page')
+            return redirect('product_filter_page')
         else:
             context = {
                 'form': form_published_house
@@ -51,7 +51,7 @@ def user_registration(request):
             messages.success(request, 'Вы успешно зарегистрированны!')
             return redirect('log in')
         messages.error(request, 'Что-то пошло не так')
-        return redirect('home_page')
+        return redirect('product_filter_page')
     else:
         reg_form = RegistrationForm()
     return render(request, 'libary/auth/registration.html', {'form': reg_form})
@@ -70,7 +70,7 @@ def user_login(request):
             print(user)
 
             messages.success(request, 'Вы успешно авторизованы')
-            return redirect('home_page')
+            return redirect('product_filter_page')
         messages.error(request, "Данные введены неверно")
     else:
         form_login = LoginForm()
