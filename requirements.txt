@@ -4,3 +4,4 @@ sqlparse==0.4.2
 psycopg2-binary==2.9.3
 Pillow
 uwsgi==2.0.21
+whitenoise
