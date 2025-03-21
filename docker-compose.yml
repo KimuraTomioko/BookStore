@@ -7,14 +7,16 @@ services:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./staticfiles:/code/staticfiles  # Монтируем статику
     depends_on:
       - web
 
   web:
     build: .
-    command: ["/bin/sh", "-c", "chmod +x /code/wait-for-it.sh && /code/wait-for-it.sh db:5432 -- uwsgi --ini /code/uwsgi.ini"]
+    command: ["/bin/sh", "-c", "chmod +x /code/wait-for-it.sh && /code/wait-for-it.sh db:5432 -- python manage.py collectstatic --noinput && uwsgi --ini /code/uwsgi.ini"]
     volumes:
       - .:/code
+      - ./staticfiles:/code/staticfiles  # Монтируем статику
     ports:
       - "8000:8000"
     depends_on:
@@ -37,3 +39,4 @@ services:
 
 volumes:
   postgres_data:
+  staticfiles:  # Объявляем volume для статики
