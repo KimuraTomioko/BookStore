@@ -16,7 +16,8 @@ urlpatterns = [
 
     path('anon/', anonim, name = 'anon'),
     path('auth/', auth, name='auth'),
-    path('publishing_house/suppliers/', supplier, name='suppliers')
+    path('publishing_house/suppliers/', supplier, name='suppliers'),
+    path('activate/', activate_user, name='activate_user')
     #path('can_change_publishing_house/', can_change_publishing_house, 'change_house'),
     #path('can_add_change_publishing_house', can_add_change_publishing_house, 'change_add_house'),
     #path('can_change_only_telephone/', change_only_telephone, name='change telephone')

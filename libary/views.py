@@ -4,6 +4,16 @@ from .forms import Publishing_houseForm, RegistrationForm, LoginForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.urls import reverse
+from django.core.signing import Signer, BadSignature
+from django.conf import settings
+from .forms import RegistrationForm, LoginForm
 
 def book_list(request):
     list_books = Books.objects.filter(exists=True)
@@ -43,32 +53,62 @@ def publishing_house_create(request):
         }
         return render(request, 'libary/publishing_house/create.html', context)
 
+signer = Signer()
+
 def user_registration(request):
     if request.method == 'POST':
         reg_form = RegistrationForm(request.POST)
         if reg_form.is_valid():
-            user = reg_form.save()
-            messages.success(request, 'Вы успешно зарегистрированны!')
+            user = reg_form.save(commit=False)
+            user.is_active = False  # отключаем пользователя до подтверждения
+            user.save()
+
+            # создаём токен и ссылку активации
+            token = signer.sign(user.pk)
+            activation_link = request.build_absolute_uri(
+                reverse('activate_user') + f'?token={token}'
+            )
+
+            # отправляем письмо
+            send_mail(
+                'Подтверждение регистрации',
+                f'Здравствуйте, {user.username}!\n\nПерейдите по ссылке для активации аккаунта:\n{activation_link}',
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+
+            messages.success(request, 'Регистрация прошла успешно! Проверьте почту для активации аккаунта.')
             return redirect('log in')
-        messages.error(request, 'Что-то пошло не так')
-        return redirect('product_filter_page')
+        else:
+            messages.error(request, 'Что-то пошло не так')
+            return redirect('regis')
     else:
         reg_form = RegistrationForm()
     return render(request, 'libary/auth/registration.html', {'form': reg_form})
+
+def activate_user(request):
+    token = request.GET.get('token')
+    try:
+        user_id = signer.unsign(token)
+        user = User.objects.get(pk=user_id)
+        user.is_active = True
+        user.save()
+        messages.success(request, 'Аккаунт успешно активирован! Теперь вы можете войти.')
+        return redirect('log in')
+    except (BadSignature, User.DoesNotExist):
+        messages.error(request, 'Ссылка активации недействительна.')
+        return redirect('regis')
 
 def user_login(request):
     if request.method == 'POST':
         form_login = LoginForm(data=request.POST)
         if form_login.is_valid():
             user = form_login.get_user()
-            print('anonim', request.user.is_anonymous)
-            print('auth', request.user.is_authenticated)
+            if not user.is_active:
+                messages.error(request, 'Аккаунт не активирован. Проверьте вашу почту.')
+                return redirect('log in')
             login(request, user)
-
-            print('anonim', request.user.is_anonymous)
-            print('auth', request.user.is_authenticated)
-            print(user)
-
             messages.success(request, 'Вы успешно авторизованы')
             return redirect('product_filter_page')
         messages.error(request, "Данные введены неверно")

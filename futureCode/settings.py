@@ -113,3 +113,13 @@ BASKET_SESSION_ID = 'basket'
 
 # AutoField
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email settings for Mail.ru
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465  # или 587 (но не 2525!)
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True  # если порт 465
+EMAIL_HOST_USER = 'django_book_store@mail.ru'
+EMAIL_HOST_PASSWORD = 'Xz5jMbKsFrVAG6egCxip'  # или app-пароль, если включена 2FA
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
